@@ -10,6 +10,7 @@ public class MoviesIO {
 
 	public static void main(String[] args) {
 		// Movie m =new Movie("","'");
+		try {
 		Scanner scnr = new Scanner(System.in);
 		System.out.println("Welcome to the Movie List Application! ");
 		System.out.println();
@@ -25,7 +26,11 @@ public class MoviesIO {
 		System.out.print("What category are you interested in?");
 		// printCategory();
 		// String category=scnr.nextLine();
+		
 		int code = scnr.nextInt();
+		if(code>=4) {
+			throw new Exception();
+		}
 		scnr.nextLine();
 		// if(category.contains("drama"))
 
@@ -40,23 +45,31 @@ public class MoviesIO {
 			System.out.print("What category are you interested in?");
 			// category =scnr.nextLine();
 			code = scnr.nextInt();
+			if(code>=4) {
+				throw new Exception();
+			}
 			scnr.nextLine();
 			// ArrayList<String> titles= findCategory(list,category);
 			ArrayList<String> titles = findCategory(list, code);
 			displayTitles(titles);
 			val = Validator.getYesNo(scnr, "Continue? (y/n): ");
 			scnr.nextLine();
+		
 
+		}
+		}catch(Exception e) {
+			System.out.println("Sorry, that category is not Their : ");
 		}
 
 	}
 
 	private static void printCategory() {
-
+		
 		print.put(1, "animated");
 		print.put(2, "drama");
 		print.put(3, "horror");
 		print.put(4, "scifi");
+		
 		for (Map.Entry<Integer, String> entry : print.entrySet()) {
 			System.out.println(entry.getKey() + "  " + entry.getValue());
 		}
